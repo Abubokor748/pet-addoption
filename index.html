@@ -5,27 +5,206 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assignment-6</title>
     <!-- daisyUI cdn -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- google font cdn -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
     <!-- font awesome cdn -->
-    <script src="https://kit.fontawesome.com/ab55396a56.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/ab55396a56.js"
+      crossorigin="anonymous"
+    ></script>
     <!-- tailwind cdn -->
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <header>
-        <p class="p-6">
-            Just checking,
-        </p>
-    </header>
-    <main></main>
-    <footer></footer>
+  <body class="scroll-smooth">
+    <!-- header section starts -->
 
-    <!--  -->
+    <header>
+      <!-- navbar starts -->
+      <section>
+        <nav class="mx-4 my-3 lg:mx-20">
+          <div class="navbar bg-base-100">
+            <div class="navbar-start">
+              <div class="flex gap-2">
+                <img src="./images/logo.webp" alt="404 Error" />
+                <a class="text-xl font-bold"> Peddy </a>
+              </div>
+            </div>
+
+            <div class="navbar-center ml-4">
+              <div class="hidden lg:block md:block">
+                <ul class="flex lg:gap-28 md:gap-16">
+                  <li><a href="#">Homepage</a></li>
+                  <li><a href="#">Shop</a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="navbar-end">
+              <button class="btn btn-ghost btn-circle">
+                <div class="indicator hidden lg:block md:block">
+                  <i class="fa-regular fa-user"> </i>
+                </div>
+                <div class="dropdown mr-20 lg:hidden md:hidden">
+                  <div
+                    tabindex="0"
+                    role="button"
+                    class="btn btn-ghost btn-circle"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h7"
+                      />
+                    </svg>
+                  </div>
+                  <ul
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-2 w-40 p-1"
+                  >
+                    <li><a href="#">Homepage</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">User</a></li>
+                  </ul>
+                </div>
+              </button>
+            </div>
+          </div>
+        </nav>
+      </section>
+      <!-- navbar ends -->
+
+      <!-- banner sections starts -->
+      <section>
+        <div class="hero">
+          <div class="hero-content flex-col">
+            <div class="text-center">
+              <p>Bringing Families Together ❤️‍🔥</p>
+              <h1 class="text-5xl font-bold p-6">
+                Your Path to Adoption Starts Here
+              </h1>
+              <p class="px-9 my-4">
+                Ready to welcome a new pet into your family? Find everything you
+                need to know about adoption, fostering, and providing care.
+              </p>
+              <button class="btn btn-neutral text-white bg-[#0E7A81]">
+                <a href="#targeted-section">View More</a>
+              </button>
+            </div>
+            <img src="/images/pet.webp" class="rounded-lg p-4 shadow-2xl" />
+          </div>
+        </div>
+      </section>
+      <!-- banner sections starts -->
+    </header>
+
+    <!-- header section ends -->
+
+    <!-- main section starts -->
+
+    <main>
+      <section id="targeted-section" class="mt-6 mx-8">
+        <div>
+          <h1 class="p-3 text-5xl text-center">Adopt Your Best Friend</h1>
+          <p class="p-2 mt-2 text-lg text-center">
+            Ready to open your heart and home to a new furry friend? Explore our
+            adoptable pets and find the perfect match for your family.
+          </p>
+        </div>
+        <div class="flex justify-evenly gap-6 p-10">
+          <button class="btn text-black">Dogs</button>
+          <button class="btn text-black">Cats</button>
+          <button class="btn text-black">Rabbits</button>
+          <button class="btn text-black">Birds</button>
+        </div>
+        <div class="mx-3 mt-6 flex justify-between">
+          <h3 class="text-xl font-bold">Best Deal For You</h3>
+          <button class="btn bg-[#0E7A81] text-white">Sort by Price</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- main section ends -->
+
+    <!-- Footer section starts -->
+
+    <footer class="bg-black mt-10 px-6 py-10">
+      <section class="mx-10">
+        <div class="lg:grid lg:grid-flow-col">
+          <div class="flex flex-col justify-center mb-6 gap-2">
+            <div class="flex gap-3 justify-center">
+              <img src="./images/logo.webp" alt="404 Error" class="w-5`" />
+              <a class="text-xl text-white font-bold"> Peddy </a>
+            </div>
+            <div class="text-white flex flex-col text-center gap-2 mt-3 mb-8">
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Animals</a></li>
+                <li><a href="#">Foundation</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col my-6 gap-2 justify-center text-white items-center"
+          >
+            <h1 class="text-xl">Connect With us</h1>
+            <input
+              type="email"
+              class="w-64 p-2 bg-gray-800 text-white placeholder-white border border-gray-300 rounded-md"
+              placeholder="Enter your email"
+            />
+            <button class="btn btn-neutral text-white bg-[#0E7A81]">
+              Subscribe
+            </button>
+          </div>
+
+          <!-- footer end part starts -->
+          <div>
+            <div>
+              <h1 class="text-2xl mb-6 text-white text-center">
+                Shop Information
+              </h1>
+              <p class="text-white text-center">
+                Location: av. Washington 165, NY CA 54003
+                <br />
+                Phone: +31 85 964 47 25
+                <br />
+                Email: info@yourdomain.com
+                <br />
+                Openings hours: 9.00 AM - 5.00 PM
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- footer end part starts -->
+      </section>
+    </footer>
+
+    <!-- Footer section ends -->
+
+    <!-- js linking -->
     <script src="script.js"></script>
   </body>
 </html>
