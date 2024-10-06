@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" class="!scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,7 @@
     <!-- tailwind cdn -->
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="scroll-smooth">
+  <body>
     <!-- header section starts -->
 
     <header>
@@ -130,15 +130,17 @@
             adoptable pets and find the perfect match for your family.
           </p>
         </div>
-        <div class="flex justify-evenly gap-6 p-10">
-          <button class="btn text-black">Dogs</button>
-          <button class="btn text-black">Cats</button>
-          <button class="btn text-black">Rabbits</button>
-          <button class="btn text-black">Birds</button>
+        <div id="categories" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-evenly gap-6 p-8">
+
         </div>
-        <div class="mx-3 mt-6 flex justify-between">
+
+        <div class="lg:mx-16 mx-4 mt-6 flex justify-between">
           <h3 class="text-xl font-bold">Best Deal For You</h3>
           <button class="btn bg-[#0E7A81] text-white">Sort by Price</button>
+        </div>
+
+        <div id="cards" class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
+
         </div>
       </section>
     </main>
@@ -208,3 +210,8 @@
     <script src="script.js"></script>
   </body>
 </html>
+
+<button class="btn text-black">Dogs</button>
+<button class="btn text-black">Cats</button>
+<button class="btn text-black">Rabbits</button>
+<button class="btn text-black">Birds</button>
