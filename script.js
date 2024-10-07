@@ -1,4 +1,4 @@
-// create loadCategories
+// create loadCategories for button
 
 const loadCategories = () => {
   fetch("https://openapi.programming-hero.com/api/peddy/categories")
@@ -16,18 +16,128 @@ const loadCards = () => {
 };
 
 // load categories pet wise
-const loadCategoriesPets = (samePet) => {
-  fetch(`https://openapi.programming-hero.com/api/peddy/pets`)
+const loadCategoriesPets = (category) => {
+  fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
     .then((res) => res.json())
-    .then((data) => displayCategories(data.petId))
+    .then((data) => displayCards(data.data))
     .catch((error) => console.log(error));
-  alert(samePet);
+  // alert(samePet);
   
 };
+
+// show modal 
+const loadModal = (petId) => {
+  fetch(`https://openapi.programming-hero.com/api/peddy/pet/${petId}`)
+    .then((res) => res.json())
+    .then((data) => displayModal(data.petData))
+    .catch((error) => console.log(error));
+  	console.log(petId);
+}
+
+// display count down modal details
+
+let countDownFrom = 3;
+let countDownInterval;
+const countModal = () => {
+  document.getElementById("countDownModal")
+  const countDownDisplay = document.getElementById("count-down-display")
+
+  // modal open
+  document.getElementById("modal-countDown-show").click();
+
+  // set the value = 3 all the time
+  countDownFrom = 3;
+  countDownDisplay.innerText = countDownFrom;
+
+  // set the countdown
+  const countDownInterval = setInterval(() => {
+    countDownFrom--;
+    countDownDisplay.innerText = countDownFrom;
+    if(countDownFrom === 0){
+      clearInterval(countDownInterval);
+      closeModal();
+    }
+    countDownDisplay.innerText = countDownFrom;
+    
+  }, 1000)
+}
+
+// closing function
+function closeModal() {
+  document.getElementById("countDownModal").close();
+  clearInterval(countDownInterval);
+}
+
+// all buttons are together
+const buttons = document.querySelectorAll('.btn-countdown');
+buttons.forEach(button => {
+  button.addEventListener('click', closeModal)
+})
+
+// display modal for details
+const displayModal = (modal) => {
+  console.log(modal);
+  const detailContainer = document.getElementById("modal-content")
+
+  document.getElementById("modal-details-show").click();
+
+  detailContainer.innerHTML = `
+  <img src=${modal.image} alt="" class="w-full object-cover">
+  <h1 class="mt-6 font-bold text-2xl ">${modal.pet_name}</h1>
+    <div class="grid grid-cols-2">
+      <div class="flex gap-2">
+        <img src="./images/breed.png" alt="" class="px-2 py-2">
+        ${modal.breed ? `<p> Breed: ${modal.breed}</p>` : '<p>Breed: Unknown</p>'}
+      </div>
+      <div class="flex gap-2">
+        <img src="./images/Birth.png" alt="" class="px-2 py-2 ">
+        ${modal.date_of_birth ? `<p>Date of Birth: ${modal.date_of_birth}</p>` : '<p>Date of Birth: Unknown</p>'}
+      </div>
+      <div class="flex gap-2">
+        <img src="./images/Gender.png" alt="" class="px-2 py-2">
+        ${modal.gender ? `<p>Gender: ${modal.gender}</p>` : '<p>Gender: Unknown</p>'}
+      </div>
+      <div class="flex gap-2">
+        <img src="./images/price.png" alt="" class="px-2 py-2">
+        ${modal.price ? `<p>price: ${modal.price}$</p>` : '<p>price: Inbox </p>'}
+      </div>
+      <div class="flex gap-2">
+        <img src="./images/Gender.png" alt="" class="px-2 py-2">
+        ${modal.vaccinated_status ? `<p>Vaccinated status: ${modal.vaccinated_status}</p>` : '<p>Vaccinated status: Unknown</p>'}
+      </div>
+    </div>
+    <hr>
+    <h2 class="mt-6 font-semibold text-xl">Details Information</h2>
+    <p>${modal.pet_details}</p>
+  `
+} 
+
 
 // display cards
 const displayCards = (pets) => {
   const cardsContainer = document.getElementById("cards");
+  cardsContainer.innerHTML = "";
+
+  if(pets.length == 0){
+
+    cardsContainer.classList.remove("grid");
+    cardsContainer.innerHTML = `
+    <div class="min-h-[300px] w-full flex flex-col gap-5 justify-center items-center">
+      <img src="./images/error.webp" alt="">
+      <h2 class="text-center text-xl font-bold">
+        Under Construction
+      </h2>
+      <p>
+        We will be adding the birds section soon. We are currently working on it, Stay Tuned with us for more upcoming updates.
+      </p>
+    </div>
+    `;
+    return;
+  }
+  else{
+    cardsContainer.classList.add("grid");
+  }
+  
   pets.forEach((pet) => {
     console.log(pet);
 
@@ -39,7 +149,7 @@ const displayCards = (pets) => {
     <img
       src=${pet.image}
       alt="Shoes"
-      class="rounded-xl">
+      class="rounded-xl w-full object-cover">
   </figure>
   <div class="card-body">
     <h2 class="card-title font-bold pl-3">${pet.pet_name}</h2>
@@ -66,8 +176,8 @@ const displayCards = (pets) => {
       <button class="btn bg-white text-[#0E7A81] border">
         <img src="./images/like.png" alt="">
       </button>
-      <button class="btn bg-white text-[#0E7A81] border">Adopt</button>
-      <button class="btn bg-white text-[#0E7A81] border">Details</button>
+      <button onclick="countModal()" class="btn bg-white text-[#0E7A81] border btn-countdown">Adopt</button>
+      <button onclick="loadModal(${pet.petId})" class="btn bg-white text-[#0E7A81] border">Details</button>
     </div>
   </div>
         `;
@@ -75,19 +185,20 @@ const displayCards = (pets) => {
   });
 };
 
-// displayCategories
+// displayCategories for buttons
 const displayCategories = (categories) => {
   const categoryContainer = document.getElementById("categories");
 
-  categories.forEach( (item) => {
-    console.log(item);
+  categories.forEach((item) => {
+    // console.log(item);
 
     // create a button
+
 
     const buttonContainer = document.createElement("div");
     buttonContainer.innerHTML = 
     `
-      <button onclick="loadCategoriesPets(${item.petId})" class="btn flex gap-2">
+      <button onclick="loadCategoriesPets('${item.category}')" class="btn flex justify-center w-40 h-16">
         <img
       src=${item.category_icon}
       alt="404 Error"
@@ -103,53 +214,11 @@ const displayCategories = (categories) => {
 
     categoryContainer.append(buttonContainer);
   });
+
 };
 
 loadCategories();
 loadCards();
-
-// {
-//     "petId": 1,
-//     "breed": "Golden Retriever",
-//     "category": "Dog",
-//     "date_of_birth": "2023-01-15",
-//     "price": 1200,
-//     "image": "https://i.ibb.co.com/p0w744T/pet-1.jpg",
-//     "gender": "Male",
-//     "pet_details": "This friendly male Golden Retriever is energetic and loyal, making him a perfect companion for families. Born on January 15, 2023, he enjoys playing outdoors and is especially great with children. Fully vaccinated, he's ready to join your family and bring endless joy. Priced at $1200, he offers love, loyalty, and a lively spirit for those seeking a playful yet gentle dog.",
-//     "vaccinated_status": "Fully",
-//     "pet_name": "Sunny"
-//   },
-
-/* <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_2081_39)">
-<path d="M3.33334 3.33337H8.33334V8.33337H3.33334V3.33337Z" stroke="#5A5A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11.6667 3.33337H16.6667V8.33337H11.6667V3.33337Z" stroke="#5A5A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3.33334 11.6666H8.33334V16.6666H3.33334V11.6666Z" stroke="#5A5A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11.6667 14.1666C11.6667 14.8297 11.9301 15.4656 12.3989 15.9344C12.8677 16.4032 13.5036 16.6666 14.1667 16.6666C14.8297 16.6666 15.4656 16.4032 15.9344 15.9344C16.4033 15.4656 16.6667 14.8297 16.6667 14.1666C16.6667 13.5036 16.4033 12.8677 15.9344 12.3989C15.4656 11.93 14.8297 11.6666 14.1667 11.6666C13.5036 11.6666 12.8677 11.93 12.3989 12.3989C11.9301 12.8677 11.6667 13.5036 11.6667 14.1666Z" stroke="#5A5A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<clipPath id="clip0_2081_39">
-<rect width="20" height="20" fill="white"/>
-</clipPath>
-</defs>
-</svg> */
-
-/* <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_2081_39)">
-<path d="M3.33334 3.33337H8.33334V8.33337H3.33334V3.33337Z" stroke="#5A5A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11.6667 3.33337H16.6667V8.33337H11.6667V3.33337Z" stroke="#5A5A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3.33334 11.6666H8.33334V16.6666H3.33334V11.6666Z" stroke="#5A5A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11.6667 14.1666C11.6667 14.8297 11.9301 15.4656 12.3989 15.9344C12.8677 16.4032 13.5036 16.6666 14.1667 16.6666C14.8297 16.6666 15.4656 16.4032 15.9344 15.9344C16.4033 15.4656 16.6667 14.8297 16.6667 14.1666C16.6667 13.5036 16.4033 12.8677 15.9344 12.3989C15.4656 11.93 14.8297 11.6666 14.1667 11.6666C13.5036 11.6666 12.8677 11.93 12.3989 12.3989C11.9301 12.8677 11.6667 13.5036 11.6667 14.1666Z" stroke="#5A5A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<clipPath id="clip0_2081_39">
-<rect width="20" height="20" fill="white"/>
-</clipPath>
-</defs>
-</svg> */
-
-// ${pet.breed == false ? `<p> Breed: ${pet.breed}</p>` : "Not available"}
 
 /* <p> Birth: ${pet.date_of_birth}</p> */
 

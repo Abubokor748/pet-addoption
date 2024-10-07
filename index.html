@@ -130,17 +130,23 @@
             adoptable pets and find the perfect match for your family.
           </p>
         </div>
-        <div id="categories" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-evenly gap-6 p-8">
-
-        </div>
+        <div
+          id="categories"
+          class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:justify-evenly gap-6 p-8"
+        ></div>
 
         <div class="lg:mx-16 mx-4 mt-6 flex justify-between">
           <h3 class="text-xl font-bold">Best Deal For You</h3>
           <button class="btn bg-[#0E7A81] text-white">Sort by Price</button>
         </div>
 
-        <div id="cards" class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
+        <div class="grid md:grid-cols-4 lg:grid-cols-4">
+          <div
+            id="cards"
+            class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:col-span-3 lg:col-span-3 gap-5 py-10"
+          ></div>
 
+          <div class="border mt-8 rounded-2xl p-3 grid grid-cols-2"></div>
         </div>
       </section>
     </main>
@@ -211,7 +217,51 @@
   </body>
 </html>
 
-<button class="btn text-black">Dogs</button>
-<button class="btn text-black">Cats</button>
-<button class="btn text-black">Rabbits</button>
-<button class="btn text-black">Birds</button>
+<!-- Open the modal details -->
+<button
+  id="modal-details-show"
+  class="btn hidden"
+  onclick="detailsModal.showModal()"
+>
+  open modal
+</button>
+<dialog id="detailsModal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <div id="modal-content"></div>
+    <div class="modal-action">
+      <form method="dialog" class="w-full">
+        <button class="btn w-full">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<!-- Open the countdown modal -->
+<button
+  id="modal-countDown-show"
+  class="btn hidden"
+  onclick="countDownModal.showModal()"
+>
+  open modal
+</button>
+<dialog id="countDownModal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <div>
+      <img
+        src="./images/count-down.jpg"
+        alt="404 Error"
+        class="w-full object-cover"
+      />
+      <h1 class="font-bold text-2xl text-center">Congratulation</h1>
+      <p class="text-center text-lg">
+        You have just adopted a nice loving animal
+      </p>
+      <p id="count-down-display" class="text-6xl font-bold text-center">3</p>
+    </div>
+    <div class="modal-action" onclick="closeModal()">
+      <form method="dialog">
+        
+      </form>
+    </div>
+  </div>
+</dialog>
