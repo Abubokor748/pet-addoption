@@ -288,12 +288,12 @@ const displayCategories = (categories) => {
     const buttonContainer = document.createElement("div");
 
     buttonContainer.innerHTML = `
-      <button onclick="loadCategoriesPets('${item.category}')" class="btn flex justify-center w-40 h-16 mx-auto">
+      <button onclick="loadCategoriesPets('${item.category}')" class="btn lg:flex  justify-center w-24 h-20 md:w-40 md:h-16 lg:w-40 lg:h-16 mx-auto">
         <img
       src=${item.category_icon}
       alt="404 Error"
       class="rounded-xl w-10 object-cover">
-      <div  class="mt-3">
+      <div  class="">
         <p class="font-bold">${item.category}</p>
       </div>
       </button>
