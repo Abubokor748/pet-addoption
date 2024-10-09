@@ -132,22 +132,25 @@
         </div>
         <div
           id="categories"
-          class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:justify-evenly gap-6 p-6 "
-        ></div>
+          class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:justify-evenly gap-6 p-6">
+        </div>
 
         <div class="lg:mx-16 mx-4 mt-6 flex justify-between">
           <h3 class="text-xl font-bold">Best Deal For You</h3>
-          <button class="btn bg-[#0E7A81] text-white">Sort by Price</button>
+          <button id="sortBtn" class="btn bg-[#0E7A81] text-white">Sort by Price</button>
         </div>
 
         <div class="grid md:grid-cols-4 lg:grid-cols-4">
           <div
-            id="cards"
-            class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:col-span-3 lg:col-span-3 gap-5 py-10"
-          ></div>
+            id="cards" class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:col-span-3 lg:col-span-3 gap-5 py-10 ">
+            <div id="loading" class="w-10 mx-auto my-auto">
+              <img src="./images/loading.gif" alt="404 Error">
+            </div>
+          </div>
 
           <div id="images" class="border  mt-8 rounded-2xl p-3 
-          grid grid-cols-2 auto-rows-min gap-3"></div>
+            grid grid-cols-2 auto-rows-min gap-3">
+          </div>
         </div>
       </section>
     </main>
@@ -266,3 +269,5 @@
     </div>
   </div>
 </dialog>
+
+

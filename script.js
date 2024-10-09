@@ -8,20 +8,58 @@ const loadCategories = () => {
 };
 
 // create cards
+let allPets = [];
+
+
+
+
 const loadCards = () => {
-  fetch("https://openapi.programming-hero.com/api/peddy/pets")
-    .then((res) => res.json())
-    .then((data) => displayCards(data.pets))
-    .catch((error) => console.log(error));
+  setTimeout(() => {
+
+    fetch("https://openapi.programming-hero.com/api/peddy/pets")
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById("loading").classList.remove("hidden")
+        allPets = data.pets;
+        displayCards(allPets);
+      })
+      .catch((error) => console.log(error));
+  }, 2000)
 };
+
+// sort buttons work
+// const sortPetsByPriceDescending = (pets) => {
+  
+  // return pets.sort(function (a, b) {
+  //   return b.price - a.price;
+  // });
+// }
+const sortPetsByPriceDescending = (pets) => {
+  document.getElementById("sortBtn").addEventListener("click", () => {
+    const notSortedPets = sortPetsByPriceDescending([...allPets]);
+    console.log(notSortedPets);
+
+    let sortedPets = pets.sort((a, b) => 
+      (b.price - a.price))
+    
+    console.log(sortedPets)
+  });
+};
+
+// sort button
+
 
 // load categories pet wise
 const loadCategoriesPets = (category) => {
-  fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
-    .then((res) => res.json())
-    .then((data) => displayCards(data.data))
-    .catch((error) => console.log(error));
-  // alert(samePet);
+  setTimeout(() => {
+
+    fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
+      .then((res) => res.json())
+      .then((data) => displayCards(data.data))
+      .catch((error) => console.log(error));
+  }, 2000)
+// tried but failed to give a loading for the buttons, no when i click the button it take 2 second to load
+
 };
 
 // show modal
@@ -243,7 +281,7 @@ const displayCategories = (categories) => {
   const categoryContainer = document.getElementById("categories");
 
   categories.forEach((item) => {
-    // console.log(item);
+    
 
     // create a button
 
@@ -260,7 +298,7 @@ const displayCategories = (categories) => {
       </div>
       </button>
     `;
-    // button.innerText = item.category;
+    
 
     //  add button to category
 
